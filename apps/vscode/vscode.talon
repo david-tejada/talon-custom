@@ -1,12 +1,18 @@
 app: vscode
 -
 
-jump before [<user.text>]: 
-    user.vscode("metaGo.goto Before")
+jump before: 
+    user.vscode("metaGo.gotoBefore")
     sleep(50ms)
-    insert(user.text or "")
-
-jump after [<user.text>]: 
-    user.vscode("metaGo.goto After")
+jump after: 
+    user.vscode("metaGo.gotoAfter")
     sleep(50ms)
-    insert(user.text or "")
+clear until: 
+    user.vscode("metaGo.metaJump.deleteToSmart")    
+    sleep(50ms)
+select before:
+    user.vscode("metaGo.selectBefore")
+    sleep(50ms)
+select after:
+    user.vscode("metaGo.selectAfter")
+    sleep(50ms)
