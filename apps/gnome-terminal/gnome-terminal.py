@@ -12,8 +12,9 @@ class user_actions:
     def tab_jump(number):
         actions.key("alt-{}".format(number))
 
-    # tab_final is not supported by konsole by default
-    # but short cut can be configured
+    def tab_final():
+        actions.key("alt-0")
+
 
 @ctx.action_class("app")
 class app_actions:
@@ -22,10 +23,10 @@ class app_actions:
         actions.key("ctrl-shift-t")
 
     def tab_previous():
-        actions.key("shift-left")
+        actions.key("ctrl-pageup")
 
     def tab_next():
-        actions.key("shift-right")
+        actions.key("ctrl-pagedown")
 
     def tab_close():
         actions.key("ctrl-shift-w")
@@ -33,7 +34,7 @@ class app_actions:
     def tab_reopen():
         # TODO: decide whether this notification is good style
         # (if this function wouldn't be defined here a wrong default would be activated)
-        actions.app.notify("tab reopen is not possible in kde konsole")
+        actions.app.notify("tab reopen is not possible in gnome terminal")
 
     def window_open():
         actions.key('ctrl-shift-n')
