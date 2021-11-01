@@ -6,11 +6,12 @@ and code.language: css
 -
 tag(): user.code_generic
 
-<user.css_declaration>:
-    user.insert_css_declaration(user.css_declaration)
-
-{user.css_units}:
-    insert(user.css_units)
+{user.css_properties} is <user.css_value>+:
+    insert(user.css_properties)
+    insert(': ')
+    user.insert_many_sep(user.css_value_list)
+    insert(';')
+    key(left)
 
 value {user.css_values}:
     insert(user.css_values)

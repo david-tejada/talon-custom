@@ -13,20 +13,25 @@ and code.language: css
 """
 
 @mod.action_class
-class UserActions:
-  def insert_css_declaration(words: List[Any]):
-    '''Inserts a CSS declaration'''
-    actions.insert(f"{words[0]}: {' '.join(words[2:])};")
-    actions.key('left')
+class Actions:
+  def insert_many_sep(strings: List[str]) -> None:
+    """Insert a list of strings separated by a space."""
+    for string in strings:
+        actions.insert(string)
+        actions.insert(' ')
+    actions.key('backspace')
 
 @mod.capture(rule='<number> {user.css_units}')
 def css_number_unit(m) -> str:
   return str(m.number) + m.css_units
 
+@mod.capture(rule='<self.css_number_unit> | {user.css_values}')
+def css_value(m) -> str:
+  try:
+    return m.css_number_unit
+  except AttributeError:
+    return m.css_values
 
-@mod.capture(rule='{user.css_properties} is [(<self.css_number_unit> | {user.css_values})*]')
-def css_declaration(m) -> List[str]:
-  return m._words
 
 @ctx.action_class("user")
 class UserActions:
