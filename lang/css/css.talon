@@ -1,20 +1,15 @@
-code.language: css
+mode: command
+and mode: user.css
+mode: command
+and mode: user.auto_lang
+and code.language: css
 -
 tag(): user.code_generic
 
-prop {user.css_properties}: 
-    insert(user.css_properties)
-    insert(": ;")
-    key(left)
+<user.css_declaration>:
+    user.insert_css_declaration(user.css_declaration)
 
-prop {user.css_properties} {user.css_values}: 
-    insert(user.css_properties)
-    insert(": ;")
-    key(left)
-    insert(user.css_values)
-
-<number> {user.css_units}:
-    insert(number)
+{user.css_units}:
     insert(user.css_units)
 
 value {user.css_values}:
@@ -23,6 +18,11 @@ value {user.css_values}:
 pseudo {user.css_pseudo}:
     insert(user.css_pseudo)
 
-# block:
-#     insert("{}")
-#     key("left enter")
+funky {user.css_functions}:
+    insert(user.css_functions)
+    insert("()")
+    key(left)
+
+variable <user.text>:
+    insert("--")
+    user.insert_formatted(text, "DASH_SEPARATED")
