@@ -2,5 +2,10 @@ os: linux
 tag: user.tabs
 -
 
-[go] tab <number>: user.tab_jump(number)
-[go] tab final: user.tab_final()
+(tab | tabby) (open | new): app.tab_open()
+(tab | tabby) (last | previous): app.tab_previous()
+(tab | tabby) next: app.tab_next()
+(tab | tabby) close: user.tab_close_wrapper()
+(tab | tabby) (reopen|restore): app.tab_reopen()
+(tab | tabby) <number>: user.tab_jump(number)
+(tab | tabby) final: user.tab_final()
